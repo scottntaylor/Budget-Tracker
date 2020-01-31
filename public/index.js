@@ -1,6 +1,14 @@
 let transactions = [];
 let myChart;
 
+(function () {
+  if ("serviceWorker" in navigator) {
+    navigator.serviceWorker.register("./service-worker.js", { scope: "/" })
+      .then(() => console.log("Service Worker registered successfully."))
+      .catch(error => console.log("Service Worker registration failed:", error));
+  }
+});  
+
 fetch("/api/transaction")
   .then(response => response.json())
   .then(data => {
@@ -148,3 +156,5 @@ document.querySelector("#sub-btn").addEventListener("click", function (event) {
   event.preventDefault();
   sendTransaction(false);
 });
+
+
