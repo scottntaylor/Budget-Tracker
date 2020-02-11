@@ -4,7 +4,8 @@ const FILES_TO_CACHE = [
     "/db.js",
     "/index.js",
     "/style.css",
-    "../routes/api"
+    "../routes/api.js",
+    "../models/transaction.js"
 
   ];
   
