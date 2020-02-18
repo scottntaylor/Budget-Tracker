@@ -17,7 +17,10 @@ const FILES_TO_CACHE = [
     event.waitUntil(
       caches.open(PRECACHE)
         .then(cache => cache.addAll(FILES_TO_CACHE))
-        .then(self.skipWaiting())
+        .then(self.skipWaiting()) 
+        .catch(err => {
+          console.log(err);
+        })
     );
   });
   
@@ -32,6 +35,9 @@ const FILES_TO_CACHE = [
           return caches.delete(cacheToDelete);
         }));
       }).then(() => self.clients.claim())
+      .catch(err => {
+        console.log(err);
+      })
     );
   });
   
@@ -48,6 +54,9 @@ const FILES_TO_CACHE = [
               return cache.put(event.request, response.clone()).then(() => {
                 return response;
               });
+            })
+            .catch(err => {
+              console.log(err);
             });
           });
         })
